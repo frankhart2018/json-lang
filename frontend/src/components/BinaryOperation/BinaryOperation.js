@@ -45,6 +45,13 @@ const BinaryOperation = forwardRef((_props, ref) => {
         <MenuItem value="*">* (Multiplication)</MenuItem>
         <MenuItem value="/">/ (Division)</MenuItem>
         <MenuItem value="%">% (Modulus)</MenuItem>
+        <MenuItem value="**">** (Exponentiation)</MenuItem>
+        <MenuItem value="<">&lt; (Less than)</MenuItem>
+        <MenuItem value="<=">&lt;= (Less than or equal to)</MenuItem>
+        <MenuItem value=">">&gt; (Greater than)</MenuItem>
+        <MenuItem value=">=">&gt;= (Greater than or equal to)</MenuItem>
+        <MenuItem value="==">== (Equal to)</MenuItem>
+        <MenuItem value="!=">!= (Not equal to)</MenuItem>
       </Select>
       <br />
       <br />
