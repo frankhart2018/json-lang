@@ -22,6 +22,7 @@ const InstructionSection = forwardRef((_props, ref) => {
   let [pushToStack, setPushToStack] = useState(false);
 
   const onChangeInstructionType = (e) => {
+    // eslint-disable-next-line
     switch (e.target.value) {
       case "binary_op":
         setInstructionComponent(
