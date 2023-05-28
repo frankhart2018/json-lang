@@ -1,0 +1,7 @@
+{
+    "processor": "{var_name} = {var_value}",
+    "inputs": [
+        "{var_name}",
+        "{var_value}"
+    ]
+}

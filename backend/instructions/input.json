@@ -1,0 +1,7 @@
+{
+    "processor": "{var_name} = input({prompt})",
+    "inputs": [
+        "{var_name}",
+        "{prompt}"
+    ]
+}

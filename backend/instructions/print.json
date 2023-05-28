@@ -1,0 +1,6 @@
+{
+    "processor": "print({value})",
+    "inputs": [
+        "{value}"
+    ]
+}

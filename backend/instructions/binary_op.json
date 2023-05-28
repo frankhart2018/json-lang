@@ -1,0 +1,8 @@
+{
+    "processor": "{value_1} {operator} {value_2}",
+    "inputs": [
+        "{value_1}",
+        "{operator}",
+        "{value_2}"
+    ]
+}
