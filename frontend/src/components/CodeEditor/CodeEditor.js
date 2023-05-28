@@ -37,7 +37,7 @@ const CodeEditor = () => {
       })
     );
 
-    if (response.payload.data.status == "success") {
+    if (response.payload.data.status === "success") {
       enqueueSnackbar("Code ran successfully!", { variant: "success" });
     } else {
       enqueueSnackbar("Code failed to run!", { variant: "error" });

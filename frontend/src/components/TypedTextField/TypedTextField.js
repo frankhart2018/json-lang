@@ -1,17 +1,26 @@
 import { InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import React, {
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import SelectBox from "../SelectBox/SelectBox";
 
 const TypedTextField = forwardRef((props, ref) => {
   let [fieldType, setFieldType] = useState("integer");
   let [fieldValue, setFieldValue] = useState("");
   let [isSpecialType, setIsSpecialType] = useState(false);
-  let [specialType, setSpecialType] = useState("get_stack");
+
+  const childRef = useRef();
 
   useImperativeHandle(ref, () => ({
     childFunction() {
       return {
         type: fieldType,
-        value: isSpecialType ? specialType : fieldValue,
+        value: isSpecialType
+          ? childRef.current.childFunction().value
+          : fieldValue,
       };
     },
   }));
@@ -23,6 +32,17 @@ const TypedTextField = forwardRef((props, ref) => {
     } else {
       setIsSpecialType(false);
     }
+  };
+
+  const menuItems = [
+    {
+      label: "Get from stack",
+      value: "get_stack",
+    },
+  ];
+
+  const refDataTemplate = {
+    value: "self",
   };
 
   return (
@@ -52,15 +72,15 @@ const TypedTextField = forwardRef((props, ref) => {
       )}
       {isSpecialType && (
         <>
-          <InputLabel id="special-type-label">Special Type</InputLabel>
-          <Select
+          <SelectBox
+            initialValue="get_stack"
+            onChangeHandler="set"
+            refDataTemplate={refDataTemplate}
             labelId="special-type-label"
             id="special-type"
-            value={specialType}
-            onChange={setSpecialType}
-          >
-            <MenuItem value="get_stack">Get from stack</MenuItem>
-          </Select>
+            menuItems={menuItems}
+            ref={childRef}
+          />
         </>
       )}
     </div>
