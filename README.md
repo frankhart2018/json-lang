@@ -1,8 +1,8 @@
 # JSONLang
 
-A toy language where the code is written in JSON.
+A toy language where the code is written in JSON. The project also features a simple web-based editor and interpreter.
 
-## Steps to run
+## Steps to run the web editor
 
 1. Run the backend:
 
