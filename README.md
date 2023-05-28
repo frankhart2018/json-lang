@@ -15,3 +15,7 @@ user@programmer~:$ cd backend; npm start
 ```bash
 user@programmer~:$ cd frontend; npm start
 ```
+
+## License
+
+This project is licensed under the [MIT license](https://github.com/frankhart2018/json-lang/blob/master/LICENSE).
