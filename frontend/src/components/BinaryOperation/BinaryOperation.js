@@ -1,30 +1,70 @@
-import { InputLabel, MenuItem, Select } from "@mui/material";
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
 import TypedTextField from "../TypedTextField/TypedTextField";
+import SelectBox from "../SelectBox/SelectBox";
 
 const BinaryOperation = forwardRef((_props, ref) => {
-  let [operator, setOperator] = useState("+");
-
   const childRef = useRef([]);
 
   useImperativeHandle(ref, () => ({
     childFunction() {
       let data = [];
-      data.push(childRef.current[0].childFunction());
-      data.push({
-        type: "operator",
-        value: operator,
-      });
-      data.push(childRef.current[1].childFunction());
-
+      for (let i = 0; i < 3; i++) {
+        data.push(childRef.current[i].childFunction());
+      }
       return data;
     },
   }));
+
+  const menuItems = [
+    {
+      label: "+ (Addition)",
+      value: "+",
+    },
+    {
+      label: "- (Subtraction)",
+      value: "-",
+    },
+    {
+      label: "* (Multiplication)",
+      value: "*",
+    },
+    {
+      label: "/ (Division)",
+      value: "/",
+    },
+    {
+      label: "% (Modulus)",
+      value: "%",
+    },
+    {
+      label: "** (Exponentiation)",
+      value: "**",
+    },
+    {
+      label: "< (Less than)",
+      value: "<",
+    },
+    {
+      label: "<= (Less than or equal to)",
+      value: "<=",
+    },
+    {
+      label: "> (Greater than)",
+      value: ">",
+    },
+    {
+      label: ">= (Greater than or equal to)",
+      value: ">=",
+    },
+    {
+      label: "== (Equal to)",
+      value: "==",
+    },
+    {
+      label: "!= (Not equal to)",
+      value: "!=",
+    },
+  ];
 
   return (
     <div>
@@ -33,31 +73,20 @@ const BinaryOperation = forwardRef((_props, ref) => {
         ref={(el) => (childRef.current[0] = el)}
       />
       <br />
-      <InputLabel id="operator-type-label">Operator</InputLabel>
-      <Select
+      <SelectBox
+        initialValue="+"
+        onChangeHandler="set"
         labelId="operator-type-label"
         id="operator-type"
-        value={operator}
-        onChange={(e) => setOperator(e.target.value)}
-      >
-        <MenuItem value="+">+ (Addition)</MenuItem>
-        <MenuItem value="-">- (Subtraction)</MenuItem>
-        <MenuItem value="*">* (Multiplication)</MenuItem>
-        <MenuItem value="/">/ (Division)</MenuItem>
-        <MenuItem value="%">% (Modulus)</MenuItem>
-        <MenuItem value="**">** (Exponentiation)</MenuItem>
-        <MenuItem value="<">&lt; (Less than)</MenuItem>
-        <MenuItem value="<=">&lt;= (Less than or equal to)</MenuItem>
-        <MenuItem value=">">&gt; (Greater than)</MenuItem>
-        <MenuItem value=">=">&gt;= (Greater than or equal to)</MenuItem>
-        <MenuItem value="==">== (Equal to)</MenuItem>
-        <MenuItem value="!=">!= (Not equal to)</MenuItem>
-      </Select>
+        menuItems={menuItems}
+        refType="operator"
+        ref={(el) => (childRef.current[1] = el)}
+      />
       <br />
       <br />
       <TypedTextField
         fieldLabel="Right operand"
-        ref={(el) => (childRef.current[1] = el)}
+        ref={(el) => (childRef.current[2] = el)}
       />
     </div>
   );
