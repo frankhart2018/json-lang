@@ -8,16 +8,20 @@ const SelectBox = forwardRef((props, ref) => {
     if (props.onChangeHandler === "set") {
       setSelectValue(e.target.value);
     } else {
-      props.onChangeHandler(e.target.value);
+      setSelectValue(e.target.value);
+      props.onChangeHandler(e);
     }
   };
 
   useImperativeHandle(ref, () => ({
     childFunction() {
-      return {
-        type: props.refType,
-        value: selectValue,
-      };
+      let refData = {};
+      Object.keys(props.refDataTemplate).forEach((key) => {
+        const value = props.refDataTemplate[key];
+        refData[key] = value === "self" ? selectValue : value;
+      });
+
+      return refData;
     },
   }));
 

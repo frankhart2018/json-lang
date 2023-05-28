@@ -66,6 +66,11 @@ const BinaryOperation = forwardRef((_props, ref) => {
     },
   ];
 
+  const refDataTemplate = {
+    type: "operator",
+    value: "self",
+  };
+
   return (
     <div>
       <TypedTextField
@@ -76,10 +81,10 @@ const BinaryOperation = forwardRef((_props, ref) => {
       <SelectBox
         initialValue="+"
         onChangeHandler="set"
+        refDataTemplate={refDataTemplate}
         labelId="operator-type-label"
         id="operator-type"
         menuItems={menuItems}
-        refType="operator"
         ref={(el) => (childRef.current[1] = el)}
       />
       <br />
