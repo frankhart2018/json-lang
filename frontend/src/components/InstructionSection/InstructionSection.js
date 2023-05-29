@@ -82,18 +82,6 @@ const InstructionSection = forwardRef((_props, ref) => {
 
   return (
     <div className="instruction-section">
-      {/* <InputLabel id="instruction-type-label">Instruction Type</InputLabel>
-      <Select
-        labelId="instruct-type-label"
-        id="instruction-type"
-        value={instructionType}
-        onChange={onChangeInstructionType}
-      >
-        <MenuItem value="binary_op">Binary Operation</MenuItem>
-        <MenuItem value="input">Input</MenuItem>
-        <MenuItem value="print">Print</MenuItem>
-        <MenuItem value="var">Create variable</MenuItem>
-      </Select> */}
       <SelectBox
         initialValue="binary_op"
         onChangeHandler={onChangeInstructionType}
