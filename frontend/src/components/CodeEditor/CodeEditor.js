@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { runCodeThunk } from "../../services/run-code-thunk";
 import InstructionSection from "../InstructionSection/InstructionSection";
 import { enqueueSnackbar } from "notistack";
+import "./CodeEditor.css";
 
 const CodeEditor = () => {
   let [instructionSections, setInstructionSections] = useState([]);
@@ -46,39 +47,52 @@ const CodeEditor = () => {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        onClick={addInstructionSection}
-        sx={{
-          "margin-left": "10px",
-          "margin-right": "10px",
+      <div
+        style={{
+          float: "left",
         }}
       >
-        Add instruction
-      </Button>
-      <Button
-        variant="contained"
-        sx={{
-          "margin-left": "10px",
-          "margin-right": "10px",
-        }}
-        onClick={onRunClicked}
-      >
-        Run
-      </Button>
-
-      <div style={{ margin: "10px" }}>
-        {!runningCode && output !== "" && (
-          <>
-            <strong>Output is: </strong>
-            <pre>{output}</pre>
-          </>
-        )}
+        <Button
+          variant="contained"
+          onClick={addInstructionSection}
+          sx={{
+            "margin-left": "10px",
+            "margin-right": "10px",
+          }}
+        >
+          Add instruction
+        </Button>
+        <Button
+          variant="contained"
+          sx={{
+            "margin-left": "10px",
+            "margin-right": "10px",
+          }}
+          onClick={onRunClicked}
+        >
+          Run
+        </Button>
       </div>
 
-      {instructionSections.map((instructionSection, idx) => {
-        return <div key={idx}>{instructionSection}</div>;
-      })}
+      <br />
+      <br />
+
+      <div className="half-width float-left code-side">
+        {instructionSections.map((instructionSection, idx) => {
+          return <div key={idx}>{instructionSection}</div>;
+        })}
+      </div>
+
+      {!runningCode && output !== "" && (
+        <div className="box half-width float-right output-side">
+          <div style={{ margin: "10px" }}>
+            <>
+              <strong>Output is: </strong>
+              <pre>{output}</pre>
+            </>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
